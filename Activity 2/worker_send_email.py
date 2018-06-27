@@ -42,7 +42,6 @@ def callback(channel, method, properties, body):
         ).send()
 
         print(f'[*] Message for broker send email {queue_name}.')
-
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
