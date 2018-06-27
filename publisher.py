@@ -1,18 +1,12 @@
 import json
 
-import pika
+from conection import PikaConnection
 
-connection = pika.BlockingConnection(
-    pika.ConnectionParameters('localhost')
-)
-
-channel = connection.channel()
-
-channel.queue_declare(queue='send_email')
+connection = PikaConnection(hostname='localhost', queue='send_email')
 
 
 def send_email_channel(data):
-    channel.basic_publish(
+    connection.channel.basic_publish(
         exchange='',
         routing_key='send_email',
         body=data
