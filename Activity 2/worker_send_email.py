@@ -34,13 +34,16 @@ def callback(channel, method, properties, body):
               f"Type: {body.get('body')['type']}\n" \
               f"Message: {body.get('body')['body']}"
 
-    EmailSender(
-        subject=subject,
-        to_address=to_address,
-        body=message
-    ).send()
+    if body.get('body')['type'] == 'error':
+        EmailSender(
+            subject=subject,
+            to_address=to_address,
+            body=message
+        ).send()
 
-    print(f'[*] Message for broker send email {queue_name}.')
+        print(f'[*] Message for broker send email {queue_name}.')
+
+    channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
 channel.basic_consume(callback, queue=queue_name, no_ack=False)

@@ -34,6 +34,8 @@ def callback(channel, method, properties, body):
     print(f'[*] Message for broker write logs {queue_name}.')
     print(f'A new line was created in the logs.log file --- {message}.')
 
+    channel.basic_ack(delivery_tag=method.delivery_tag)
+
 
 channel.basic_consume(callback, queue=queue_name, no_ack=False)
 channel.start_consuming()
