@@ -20,3 +20,4 @@ class PikaConnection:
 
     def closed(self):
         self.__connection.close()
+
