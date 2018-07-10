@@ -1,0 +1,11 @@
+Steps
+
+1) Install Python 3.6
+
+2) you must open the terminal and execute the next command:
+
+- pip install selenium
+
+3) to open the terminal and execute:
+
+- python scrapy.py --user = xxxxx --pass = xxxxxxxxx
